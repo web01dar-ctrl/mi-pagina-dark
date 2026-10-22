@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARK NAV V2 - Carlos</title>
+<style>
+ body{margin:0;background:#050505;color:#00ff88;font-family:monospace;min-height:100vh}
+ .bar{padding:15px;background:#000;border-bottom:2px solid #00ff88;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+ input{flex:1;background:#111;border:1px solid #00ff88;color:#fff;padding:12px;border-radius:6px;min-width:200px}
+ button{background:#00ff88;color:#000;border:none;padding:12px 18px;border-radius:6px;font-weight:bold;cursor:pointer}
+ button:hover{background:#fff}
+ .main{padding:20px}
+ .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:20px}
+ .card{background:#0c0c0c;border:1px solid #222;padding:15px;border-radius:10px;cursor:pointer}
+ .card:hover{border-color:#00ff88;box-shadow:0 0 15px rgba(0,255,136,0.3)}
+ .card h3{margin:0 0 5px 0}
+ .status{background:#000;border:1px solid #00ff88;padding:15px;border-radius:8px;margin-top:20px;color:#0f0}
+</style>
+</head>
+<body>
+<div class="bar">
+ <b>👁️ DARK NAV V2</b>
+ <input id="q" placeholder="Escribe: telegram, youtube, facebook...">
+ <button onclick="buscar()">BUSCAR</button>
+ <button onclick="ir()">IR A WEB</button>
+</div>
+<div class="main">
+ <div class="status" id="status">> Sistema DARK NAV activo...<br>> Escribe lo que quieras buscar y dale BUSCAR.<br>> Funciona 100% sin errores.</div>
+ <div class="grid">
+  <div class="card" onclick="abrir('https://web.telegram.org')"><h3>✈️ Telegram</h3><p>Telegram Web</p></div>
+  <div class="card" onclick="abrir('https://www.youtube.com')"><h3>▶️ YouTube</h3><p>Videos</p></div>
+  <div class="card" onclick="abrir('https://www.google.com')"><h3>🔍 Google</h3><p>Buscador</p></div>
+  <div class="card" onclick="abrir('https://duckduckgo.com')"><h3>🦆 DuckDuckGo</h3><p>Privado</p></div>
+  <div class="card" onclick="abrir('https://www.wikipedia.org')"><h3>📚 Wikipedia</h3><p>Enciclopedia</p></div>
+  <div class="card" onclick="abrir('https://github.com')"><h3>💻 GitHub</h3><p>Código</p></div>
+ </div>
+</div>
+<script>
+function abrir(url){
+ document.getElementById('status').innerHTML = '> Abriendo: ' + url + '<br>> Abriendo en nueva pestaña...';
+ window.open(url, '_blank');
+}
+function buscar(){
+ let v=document.getElementById('q').value;
+ if(!v)return alert('Escribe algo');
+ let url='https://duckduckgo.com/?q='+encodeURIComponent(v);
+ document.getElementById('status').innerHTML = '> Buscando: ' + v;
+ window.open(url, '_blank');
+}
+function ir(){
+ let v=document.getElementById('q').value;
+ if(!v)return;
+ if(!v.includes('.')){ buscar(); return; }
+ if(!v.startsWith('http')) v='https://'+v;
+ window.open(v, '_blank');
+}
+</script>
+</body>
+</html>
