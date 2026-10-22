@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navegador Dark - Carlos</title>
+<style>
+ body{margin:0;background:#000;color:#00ff88;font-family:monospace}
+ .bar{padding:15px;background:#0a0a0a;border-bottom:1px solid #00ff88;display:flex;gap:10px;flex-wrap:wrap}
+ input{flex:1;background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:6px;min-width:200px}
+ button{background:#00ff88;color:#000;border:none;padding:12px 18px;border-radius:6px;font-weight:bold;cursor:pointer}
+ .links{padding:20px;display:flex;gap:10px;flex-wrap:wrap}
+ .links a{background:#111;border:1px solid #222;color:#00ff88;padding:10px 15px;border-radius:20px;text-decoration:none}
+ .links a:hover{background:#00ff88;color:#000}
+ iframe{width:100%;height:80vh;border:none;background:#fff;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="bar">
+ <b>👁️ DARK NAV</b>
+ <input id="url" placeholder="Escribe youtube.com o lo que quieras buscar">
+ <button onclick="ir()">IR</button>
+ <button onclick="buscar()">BUSCAR</button>
+</div>
+<div class="links">
+ <a href="#" onclick="cargar('https://duckduckgo.com')">🦆 DuckDuckGo</a>
+ <a href="#" onclick="cargar('https://www.wikipedia.org')">📚 Wikipedia</a>
+ <a href="#" onclick="cargar('https://www.youtube.com')">▶️ YouTube</a>
+ <a href="#" onclick="cargar('https://github.com')">💻 GitHub</a>
+</div>
+<iframe id="visor" src="https://duckduckgo.com"></iframe>
+<script>
+function ir(){
+ let v=document.getElementById('url').value;
+ if(!v)return;
+ if(!v.startsWith('http')) v='https://'+v;
+ document.getElementById('visor').src=v;
+}
+function buscar(){
+ let v=document.getElementById('url').value;
+ if(!v)return;
+ document.getElementById('visor').src='https://duckduckgo.com/?q='+encodeURIComponent(v);
+}
+function cargar(url){ document.getElementById('visor').src=url; }
+</script>
+</body>
+</html>
